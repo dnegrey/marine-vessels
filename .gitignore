@@ -5,6 +5,8 @@
 *.Rout
 data/*
 !data/README.md
+var/*
+!var/README.md
 pub/*
 !pub/README.md
 success.txt
