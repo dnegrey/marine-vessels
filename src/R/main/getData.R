@@ -10,15 +10,18 @@ getData <- function(dir) {
             exdir = "var"
         )
     }
-    # read in ships data
+    # read in ships data and assign a record id for reference
     RDataCreate(
         dir = dir,
         x = "ships",
-        fun = read.csv,
+        fun = function(file) {
+            x <- read_csv(file) %>%
+                mutate(ShipsRecordId = row_number()) %>%
+                data.frame()
+            return(x)
+        },
         args = list(
-            file = "var/ships.csv",
-            na.strings = "",
-            stringsAsFactors = FALSE
+            file = "var/ships.csv"
         )
     )
 }
