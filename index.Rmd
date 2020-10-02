@@ -32,7 +32,7 @@ Sidebar {.sidebar}
 ```{r, child = "src/Rmd/sidebar.Rmd"}
 ```
 
-Home {data-icon=fa-home}
+Home {data-icon=fa-home data-orientation=columns}
 =========
 
 ```{r, child = "src/Rmd/home.Rmd"}

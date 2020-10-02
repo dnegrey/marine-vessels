@@ -1,5 +1,6 @@
 readr
 geodist
+leaflet
 dplyr
 DT
 shiny
