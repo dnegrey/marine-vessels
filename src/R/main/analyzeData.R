@@ -22,10 +22,10 @@ analyzeData <- function(dir) {
                 data.frame() %>%
                 inner_join(x, c("ShipTypeNameId", "DistSinceLast_Meters")) %>%
                 group_by(ShipTypeNameId) %>%
-                summarise(ShipsRecordId = max(ShipsRecordId)) %>%
+                summarise(ShipTypeNameObservationId = max(ShipTypeNameObservationId)) %>%
                 data.frame() %>%
-                select(ShipsRecordId) %>%
-                inner_join(x, "ShipsRecordId")
+                inner_join(x, c("ShipTypeNameId", "ShipTypeNameObservationId"))
+            y <- y[names(x)]
             # include ships that had only one obs (can exclude later)
             yo <- x %>%
                 anti_join(select(y, ShipTypeNameId), "ShipTypeNameId")

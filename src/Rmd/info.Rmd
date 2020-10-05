@@ -2,15 +2,17 @@
 
 <h3>Background</h3>
 
-This application is designed to ...
+This application is designed to facilitate exploration of marine traffic data using information being transmitted from ships via their AIS signal. Quoting **Bill Lines** from the [MarineTraffic blog](https://www.marinetraffic.com/blog/information-transmitted-via-ais-signal/):
+
+*"The International Maritime Organization SOLAS Convention requires an Automatic Identification System (AIS) to be fitted on every ship, with the exception of warships, leisure craft and fishing boats. The system was introduced primarily for safety reasons by helping government authorities to identify vessels, assist in search and rescue operations as well as provide supplementary information from other navigational systems such as radar."*
 
 <h3>Getting Started</h3>
 
-The [Home](#section-home) page provides ...
+The [Home](#section-home) page provides options for selecting a specific vessel type and name. For the given vessel selected, the map will display markers for the consecutive observations where the vessel sailed its longest distance. In cases where a vessel has the same maximum distance measured across multiple consecutive observations, the most recent is displayed.
 
 <h3>Support</h3>
 
-* <span class="fa fa-github-square"></span><a href="https://github.com/dnegrey/ShinyApp_Template" target="_blank">Source Code</a>
+* <span class="fa fa-github-square"></span><a href="https://github.com/dnegrey/marineDataApp" target="_blank">Source Code</a>
 * <span class="fa fa-envelope"></span><a href="mailto:dnegrey@gmail.com">Email</a>
 
 <br>
