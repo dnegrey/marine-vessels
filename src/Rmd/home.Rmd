@@ -1,7 +1,7 @@
 Column {data-width=205}
 ----------
 
-### Options and Notes
+### Options
 
 ```{r}
 inputPanel(
@@ -56,6 +56,7 @@ shipSelected <- eventReactive(
 output$shipSelectedNote <- renderText(
     shipSelectedNoteCreate(shipSelected())
 )
+hr()
 htmlOutput("shipSelectedNote")
 ```
 
@@ -67,7 +68,7 @@ Column {data-width=795}
 ```{r}
 output$shipSelectedMap <- renderLeaflet({
     x <- shipSelected()
-    leaflet(data = x) %>%
+    y <- leaflet(data = x) %>%
         addProviderTiles("CartoDB.Positron") %>%
         addCircleMarkers(
             lng = ~Lon,
@@ -88,31 +89,36 @@ output$shipSelectedMap <- renderLeaflet({
                 sprintf("Distance since last observation (meters): <b>%s</b>", format(round(DistSinceLast_Meters), big.mark = ",")),
                 sep = "<br>"
             )
-        ) %>%
-        addCircleMarkers(
-            lng = ~PreviousLon,
-            lat = ~PreviousLat,
-            color = "#000000"
-        ) %>%
-        addMarkers(
-            lng = ~PreviousLon,
-            lat = ~PreviousLat,
-            popup = ~paste(
-                sprintf("Vessel name: <b>%s</b>", ShipName),
-                sprintf("Vessel type: <b>%s</b>", ShipType),
-                sprintf("Longitude: <b>%s</b>", PreviousLon),
-                sprintf("Latitude: <b>%s</b>", PreviousLat),
-                sprintf("Port: <b>%s</b>", Port),
-                sprintf("Datetime: <b>%s</b>", PreviousDatetime),
-                sep = "<br>"
+        )
+    if (!is.na(x$DistSinceLast_Meters)) {
+        y <- y %>%
+            addCircleMarkers(
+                lng = ~PreviousLon,
+                lat = ~PreviousLat,
+                color = "#000000"
+            ) %>%
+            addMarkers(
+                lng = ~PreviousLon,
+                lat = ~PreviousLat,
+                popup = ~paste(
+                    sprintf("Vessel name: <b>%s</b>", ShipName),
+                    sprintf("Vessel type: <b>%s</b>", ShipType),
+                    sprintf("Longitude: <b>%s</b>", PreviousLon),
+                    sprintf("Latitude: <b>%s</b>", PreviousLat),
+                    sprintf("Port: <b>%s</b>", PreviousPort),
+                    sprintf("Datetime: <b>%s</b>", PreviousDatetime),
+                    sep = "<br>"
+                )
             )
-        ) %>%
+    }
+    y <- y %>%
         addLegend(
             position = "bottomright",
             title = "Consecutive Observation Type",
             colors = c("#000000", "#FF0000"),
             labels = c("Previous", "Current")
         )
+    return(y)
 })
 leafletOutput("shipSelectedMap")
 ```
