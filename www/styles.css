@@ -180,3 +180,9 @@ app specific
     font-weight: bold;
     color: #1A90DF;
 }
+/* election 2000 */
+#shipSelectedMap .legend i {
+    opacity: 0.5 !important;
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
+}
