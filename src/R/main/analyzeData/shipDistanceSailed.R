@@ -5,6 +5,7 @@ shipDistanceSailed <- function(x) {
         arrange(Datetime) %>%
         mutate(
             ShipTypeNameObservationId = row_number(),
+            PreviousPort = lag(Port),
             PreviousDatetime = lag(Datetime),
             PreviousLat = lag(Lat),
             PreviousLon = lag(Lon),

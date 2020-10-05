@@ -1,21 +1,73 @@
-Row
+Column {data-width=205}
 ----------
 
-### Superhero Default Blue {.superHeroDefaultBlue}
+### Options
 
-### Superhero Primary Orange {.superHeroPrimaryOrange}
+```{r}
+inputPanel(
+    selectInput(
+        inputId = "shipType",
+        label = "Vessel Type",
+        choices = names(main$shipTypeName)
+    ),
+    selectInput(
+        inputId = "shipName",
+        label = "Vessel Name",
+        choices = main$shipTypeName[[1]]$ShipName
+    )
+)
+```
 
-### Superhero Secondary Gray {.superHeroSecondaryGray}
+```{r}
+observeEvent(
+    eventExpr = input$shipType,
+    handlerExpr = {
+        x <- main$shipTypeName[[input$shipType]]$ShipName
+        updateSelectInput(
+            session = session,
+            inputId = "shipName",
+            choices = x
+        )
+    }
+)
+```
 
-### Superhero Success Green {.superHeroSuccessGreen}
+```{r}
+shipSelected <- eventReactive(
+    eventExpr = c(
+        input$shipType,
+        input$shipName
+    ),
+    valueExpr = {
+        x <- main$shipMaxDist %>%
+            filter(
+                ShipType == input$shipType,
+                ShipName == input$shipName
+            )
+        validate(
+            need(
+                expr = nrow(x) > 0,
+                message = "Selection updating, please wait a moment."
+            )
+        )
+        return(x)
+    }
+)
+output$shipSelectedNote <- renderText(
+    shipSelectedNoteCreate(shipSelected())
+)
+hr()
+htmlOutput("shipSelectedNote")
+```
 
-Row
+Column {data-width=795}
 ----------
 
-### Superhero Danger Red {.superHeroDangerRed}
+### Map
 
-### Superhero Warning Orange {.superHeroWarningOrange}
-
-### Superhero Info Blue {.superHeroInfoBlue}
-
-### Superhero Light Gray {.superHeroLightGray}
+```{r}
+output$shipSelectedMap <- renderLeaflet({
+    shipSelectedMapCreate(shipSelected())
+})
+leafletOutput("shipSelectedMap")
+```

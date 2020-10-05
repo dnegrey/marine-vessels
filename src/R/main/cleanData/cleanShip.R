@@ -1,5 +1,6 @@
 cleanShip <- function(x) {
     # keep necessary fields and clean up names
+    # fix some misspellings with port (use as labels later)
     y <- x %>%
         select(
             ShipsRecordId,
@@ -10,10 +11,23 @@ cleanShip <- function(x) {
             ShipLength = LENGTH,
             ShipWidth = WIDTH,
             Deadweight = DWT,
+            Port = port,
             Datetime = DATETIME,
             Lat = LAT,
             Lon = LON,
-            Speed = SPEED,
+            Speed = SPEED
+        ) %>%
+        mutate(
+            Port = ifelse(
+                Port == "gothenborg", "Gothenburg",
+                ifelse(
+                    Port == "Kalingrad", "Kaliningrad",
+                    ifelse(
+                        Port == "Klaipeda", "Klaipėda",
+                        Port
+                    )
+                )
+            )
         )
     return(y)
 }
