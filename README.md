@@ -2,6 +2,6 @@
 
 *Shiny application for visualizing marine vessel dataset*
 
-**version 0.1.0.9002**
+**version 0.2.0**
 
 ----------
