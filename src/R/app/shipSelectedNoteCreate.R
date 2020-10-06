@@ -5,7 +5,7 @@ shipSelectedNoteCreate <- function(x) {
     if (!is.na(x$DistSinceLast_Meters)) {
         # standard (most ships)
         xt <- paste0(
-            "The %s vessel selected, %s, had its ",
+            "The %s vessel %s had its ",
             "farthest recorded distance between two consecutive observations ",
             "on %s. It sailed %s from its previous observation on %s."
         )
@@ -20,7 +20,7 @@ shipSelectedNoteCreate <- function(x) {
     } else {
         # exception (few ships)
         xt <- paste0(
-            "The %s vessel selected, %s, had its ",
+            "The %s vessel %s had its ",
             "only observation ",
             "on %s. Therefore, it has no recorded distance between two ",
             "consecutive observations."
