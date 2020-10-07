@@ -6,16 +6,14 @@ ui <- semanticPage(
     # page title
     title = "Marine Vessels",
     # main application container
-    div(
-        class = "ui container",
-        id = "main-container",
+    div(class = "ui container", id = "main-container",
         # container header
         h1(class = "ui header", icon("ship"),
            div(class = "content", "Marine Vessels",
                div(class = "sub header", "Location and Distance App"))),
-        div(class = "ui horizontal divider", icon("cog"), 
-            "Options"),
-        # vessel type and name selection
+        # section divider
+        div(class = "ui horizontal divider", icon("cog"), "Options"),
+        # options section
         div(class = "ui container", id = "options-container",
             flow_layout(column_gap = "20px", row_gap = "15px",
                 div(class = "column",
@@ -35,17 +33,15 @@ ui <- semanticPage(
                 )
             )
         ),
-        div(class = "ui horizontal divider", icon("route"), 
-            "Results"),
-        # note and map
-        div(
-            class = "ui raised segment",
-            card(
-                style = "width: 100%;",
-                div(class = "content",
-                    div(class = "header", textOutput("shipSelectedName")),
-                    div(class = "meta", textOutput("shipSelectedType")),
-                    div(class = "description", htmlOutput("shipSelectedNote")))
+        # section divider
+        div(class = "ui horizontal divider", icon("route"), "Results"),
+        # results section
+        div(class = "ui raised segment",
+            card(style = "width: 100%;",
+                 div(class = "content",
+                     div(class = "header", textOutput("shipSelectedName")),
+                     div(class = "meta", textOutput("shipSelectedType")),
+                     div(class = "description", htmlOutput("shipSelectedNote")))
             ),
             leafletOutput("shipSelectedMap")
         )
