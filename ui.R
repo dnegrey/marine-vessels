@@ -16,8 +16,8 @@ ui <- semanticPage(
         div(class = "ui horizontal divider", icon("cog"), 
             "Options"),
         # vessel type and name selection
-        div(class = "ui container",
-            flow_layout(
+        div(class = "ui container", id = "options-container",
+            flow_layout(column_gap = "20px", row_gap = "15px",
                 div(class = "column",
                     div(class = "header", p("Vessel Type")),
                     dropdown_input(

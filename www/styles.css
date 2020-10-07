@@ -13,6 +13,10 @@ body {
     margin-bottom: 10px;
 }
 
+#options-container .column .header p {
+    font-weight: bold;
+}
+
 .ship-selected-note-keyword {
     font-weight: bold;
     color: #1A90DF;
@@ -30,4 +34,7 @@ body {
     background-color: rgba(255, 0, 0, 0.2) !important;
     border: 4px solid rgba(255, 0, 0, 0.5);
     margin-top: 1px;
+}
+#shipSelectedMap > .leaflet-control-container > .leaflet-top.leaflet-left {
+    z-index: 1;
 }
