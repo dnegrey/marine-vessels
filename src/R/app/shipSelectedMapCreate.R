@@ -48,7 +48,7 @@ shipSelectedMapCreate <- function(x) {
     y <- y %>%
         addLegend(
             position = "bottomright",
-            title = "Consecutive Observation Type",
+            title = "Observation Order",
             colors = c("#000000", "#FF0000"),
             labels = c("Previous", "Current")
         )

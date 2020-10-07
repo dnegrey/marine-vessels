@@ -19,7 +19,15 @@ server <- shinyServer(function(input, output, session) {
         ),
         valueExpr = shipSelectedShipFetch(input$shipType, input$shipName)
     )
-    # dynamic note based on ship selected
+    # reactive text - ship name
+    output$shipSelectedName <- renderText(
+        input$shipName
+    )
+    # reactive text - ship type
+    output$shipSelectedType <- renderText(
+        paste(input$shipType, "vessel")
+    )
+    # reactive text - note regarding ship distance
     output$shipSelectedNote <- renderText(
         shipSelectedNoteCreate(shipSelected())
     )

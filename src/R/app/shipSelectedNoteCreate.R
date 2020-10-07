@@ -5,31 +5,24 @@ shipSelectedNoteCreate <- function(x) {
     if (!is.na(x$DistSinceLast_Meters)) {
         # standard (most ships)
         xt <- paste0(
-            "The %s vessel %s had its ",
-            "farthest recorded distance between two consecutive observations ",
-            "on %s. It sailed %s from its previous observation on %s."
+            "Farthest recorded distance on %s. ",
+            "It sailed %s from its previous location on %s."
         )
         y <- sprintf(
             fmt = xt,
-            sprintf(xcc, x$ShipType),
-            sprintf(xcc, x$ShipName),
-            sprintf(xcc, format(x$Datetime, "%d %B %Y @ %T")),
+            format(x$Datetime, "%d %B %Y @ %T"),
             sprintf(xcc, paste0(format(round(x$DistSinceLast_Meters), big.mark = ","), "m")),
-            sprintf(xcc, format(x$PreviousDatetime, "%d %B %Y @ %T"))
+            format(x$PreviousDatetime, "%d %B %Y @ %T")
         )
     } else {
         # exception (few ships)
         xt <- paste0(
-            "The %s vessel %s had its ",
-            "only observation ",
-            "on %s. Therefore, it has no recorded distance between two ",
-            "consecutive observations."
+            "Had only observation on %s. ",
+            "Distance between observations is not applicable."
         )
         y <- sprintf(
             fmt = xt,
-            sprintf(xcc, x$ShipType),
-            sprintf(xcc, x$ShipName),
-            sprintf(xcc, format(x$Datetime, "%d %B %Y @ %T"))
+            format(x$Datetime, "%d %B %Y @ %T")
         )
     }
     return(y)
