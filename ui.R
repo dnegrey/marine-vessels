@@ -11,6 +11,13 @@ ui <- semanticPage(
         h1(class = "ui header", icon("ship"),
            div(class = "content", "Marine Vessels",
                div(class = "sub header", "Location and Distance App"))),
+        # info button
+        action_button(
+            input_id = "viewInfo",
+            label = "Info",
+            class = "primary"
+        ),
+        infoModal("infoContent", "viewInfo"),
         # section divider
         div(class = "ui horizontal divider", icon("cog"), "Options"),
         # options section
