@@ -5,6 +5,7 @@ ui <- semanticPage(
     ),
     # page title
     title = "Marine Vessels",
+    # main application container
     div(
         class = "ui container",
         id = "main-container",
@@ -12,19 +13,30 @@ ui <- semanticPage(
         h1(class = "ui header", icon("ship"),
            div(class = "content", "Marine Vessels",
                div(class = "sub header", "Location and Distance App"))),
-        # vessel type selection
-        h4("Vessel Type"),
-        dropdown_input(
-            input_id = "shipType",
-            choices = names(main$shipTypeName),
-            value = names(main$shipTypeName)[1]
+        div(class = "ui horizontal divider", icon("cog"), 
+            "Options"),
+        # vessel type and name selection
+        div(class = "ui container",
+            flow_layout(
+                div(class = "column",
+                    div(class = "header", p("Vessel Type")),
+                    dropdown_input(
+                        input_id = "shipType",
+                        choices = names(main$shipTypeName),
+                        value = names(main$shipTypeName)[1]
+                    )
+                ),
+                div(class = "column",
+                    div(class = "header", p("Vessel Name")),
+                    dropdown_input(
+                        input_id = "shipName",
+                        choices = main$shipTypeName[[1]]$ShipName
+                    )
+                )
+            )
         ),
-        # vessel name selection
-        h4("Vessel Name"),
-        dropdown_input(
-            input_id = "shipName",
-            choices = main$shipTypeName[[1]]$ShipName
-        ),
+        div(class = "ui horizontal divider", icon("route"), 
+            "Results"),
         # note and map
         div(
             class = "ui raised segment",

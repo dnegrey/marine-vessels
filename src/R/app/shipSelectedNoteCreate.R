@@ -4,22 +4,16 @@ shipSelectedNoteCreate <- function(x) {
     # note will vary based on whether ship had multiple observations
     if (!is.na(x$DistSinceLast_Meters)) {
         # standard (most ships)
-        xt <- paste0(
-            "Farthest recorded distance on %s. ",
-            "It sailed %s from its previous location on %s."
-        )
+        xt <- "Farthest recorded distance of %s occurred between %s and %s."
         y <- sprintf(
             fmt = xt,
-            format(x$Datetime, "%d %B %Y @ %T"),
             sprintf(xcc, paste0(format(round(x$DistSinceLast_Meters), big.mark = ","), "m")),
+            format(x$Datetime, "%d %B %Y @ %T"),
             format(x$PreviousDatetime, "%d %B %Y @ %T")
         )
     } else {
         # exception (few ships)
-        xt <- paste0(
-            "Had only observation on %s. ",
-            "Distance between observations is not applicable."
-        )
+        xt <- "Only one observation on %s; distance calculation not applicable."
         y <- sprintf(
             fmt = xt,
             format(x$Datetime, "%d %B %Y @ %T")

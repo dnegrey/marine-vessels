@@ -3,20 +3,16 @@ server <- shinyServer(function(input, output, session) {
     observeEvent(
         eventExpr = input$shipType,
         handlerExpr = {
-            x <- main$shipTypeName[[input$shipType]]$ShipName
             update_dropdown_input(
                 session = session,
                 input_id = "shipName",
-                choices = x
+                choices = main$shipTypeName[[input$shipType]]$ShipName
             )
         }
     )
     # get ship selected based on type and name
     shipSelected <- eventReactive(
-        eventExpr = c(
-            input$shipType,
-            input$shipName
-        ),
+        eventExpr = c(input$shipType, input$shipName),
         valueExpr = shipSelectedShipFetch(input$shipType, input$shipName)
     )
     # reactive text - ship name
