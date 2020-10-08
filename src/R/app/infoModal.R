@@ -9,8 +9,11 @@ infoModal <- function(id, target) {
               "ships via their AIS signal."
           )),
           message_box(
-              header = a(href='dnegrey.com', "Me!"),
-              # [MarineTraffic blog](https://www.marinetraffic.com/blog/information-transmitted-via-ais-signal/)
+              header = a(
+                  href = "https://www.marinetraffic.com/blog/information-transmitted-via-ais-signal/",
+                  target = "_blank",
+                  "Bill Lines (MarineTraffic Blog)"
+              ),
               class = "icon",
               icon_name = "quote left",
               content = paste(
@@ -25,7 +28,14 @@ infoModal <- function(id, target) {
                   "systems such as radar."
               )
           ),
-          h4("Getting Started"),
-          p("The home ...")
+          h4("Usage"),
+          p(paste(
+              "Use the dropdown menus to select a vessel type and name.",
+              "For the given vessel selected, the map will display markers",
+              "for the consecutive observations where the vessel sailed its",
+              "longest distance. In cases where a vessel has the same maximum",
+              "distance measured across multiple consecutive observations, the",
+              "most recent is displayed."
+          ))
     )
 }
