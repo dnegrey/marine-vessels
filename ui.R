@@ -11,7 +11,7 @@ ui <- semanticPage(
         h1(class = "ui header", icon("ship"),
            div(class = "content", "Marine Vessels",
                div(class = "sub header", "Location and Distance App"))),
-        # info button
+        # info button and modal
         action_button(
             input_id = "viewInfo",
             label = "Info",

@@ -8,8 +8,8 @@ shipSelectedNoteCreate <- function(x) {
         y <- sprintf(
             fmt = xt,
             sprintf(xcc, paste0(format(round(x$DistSinceLast_Meters), big.mark = ","), "m")),
-            format(x$Datetime, "%d %B %Y @ %T"),
-            format(x$PreviousDatetime, "%d %B %Y @ %T")
+            format(x$PreviousDatetime, "%d %B %Y @ %T"),
+            format(x$Datetime, "%d %B %Y @ %T")
         )
     } else {
         # exception (few ships)
