@@ -21,6 +21,7 @@ body {
     font-weight: bold;
     color: #2185D0;
 }
+
 #shipSelectedMap .legend i {
     opacity: 1.0 !important;
     border-radius: 20px;

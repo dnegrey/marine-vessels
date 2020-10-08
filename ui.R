@@ -23,21 +23,18 @@ ui <- semanticPage(
         # options section
         div(class = "ui container", id = "options-container",
             flow_layout(column_gap = "20px", row_gap = "15px",
-                div(class = "column",
-                    div(class = "header", p("Vessel Type")),
-                    dropdown_input(
-                        input_id = "shipType",
-                        choices = names(main$shipTypeName),
-                        value = names(main$shipTypeName)[1]
-                    )
-                ),
-                div(class = "column",
-                    div(class = "header", p("Vessel Name")),
-                    dropdown_input(
-                        input_id = "shipName",
-                        choices = main$shipTypeName[[1]]$ShipName
-                    )
-                )
+                        vesselDropdown(
+                            id = "shipType",
+                            type = "Type",
+                            choices = names(main$shipTypeName),
+                            value = names(main$shipTypeName)[1]
+                        ),
+                        vesselDropdown(
+                            id = "shipName",
+                            type = "Name",
+                            choices = main$shipTypeName[[1]]$ShipName,
+                            value = main$shipTypeName[[1]]$ShipName[1]
+                        )
             )
         ),
         # section divider

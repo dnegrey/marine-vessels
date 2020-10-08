@@ -1,27 +1,33 @@
 server <- shinyServer(function(input, output, session) {
     # change available ship names based on type selected
     observeEvent(
-        eventExpr = input$shipType,
+        eventExpr = input$`shipType-vesselDropdown`,
         handlerExpr = {
             update_dropdown_input(
                 session = session,
-                input_id = "shipName",
-                choices = main$shipTypeName[[input$shipType]]$ShipName
+                input_id = "shipName-vesselDropdown",
+                choices = main$shipTypeName[[input$`shipType-vesselDropdown`]]$ShipName
             )
         }
     )
     # get ship selected based on type and name
     shipSelected <- eventReactive(
-        eventExpr = c(input$shipType, input$shipName),
-        valueExpr = shipSelectedShipFetch(input$shipType, input$shipName)
+        eventExpr = c(
+            input$`shipType-vesselDropdown`,
+            input$`shipName-vesselDropdown`
+        ),
+        valueExpr = shipSelectedShipFetch(
+            ship_type = input$`shipType-vesselDropdown`,
+            ship_name = input$`shipName-vesselDropdown`
+        )
     )
     # reactive text - ship name
     output$shipSelectedName <- renderText(
-        input$shipName
+        input$`shipName-vesselDropdown`
     )
     # reactive text - ship type
     output$shipSelectedType <- renderText(
-        paste(input$shipType, "vessel")
+        paste(input$`shipType-vesselDropdown`, "vessel")
     )
     # reactive text - note regarding ship distance
     output$shipSelectedNote <- renderText(
