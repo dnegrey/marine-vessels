@@ -6,6 +6,7 @@ library(leaflet)
 
 # source local functions
 source("src/R/util/sourceFunctions.R")
+sourceFunctions("src/R/util")
 sourceFunctions("src/R/app")
 
 # load app data
