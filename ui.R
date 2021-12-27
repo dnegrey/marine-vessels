@@ -1,16 +1,47 @@
 ui <- semanticPage(
-    # custom css
+    ## title
+    title = "Dan Negrey | Shiny - Marine Vessels Application",
+    
+    ## head
     tags$head(
-        tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")
+        # css
+        tags$link(
+            rel = "stylesheet",
+            type = "text/css",
+            href = "styles.css"
+        ),
+        # favicon
+        tags$link(
+            rel = "icon",
+            href = "favicon.ico",
+            type="image/x-icon"
+        )
     ),
-    # page title
-    title = "Marine Vessels",
+    
+    ## body
+    # header
+    h1(
+        id = "main-header",
+        a(
+            href = "https://dnegrey.com/",
+            target = "_blank",
+            id = "main-header-logo-anchor",
+            img(
+                src = "favicon.ico",
+                id = "main-header-logo-image"
+            ),
+            "Dan Negrey | Shiny"
+        )
+    ),
     # main application container
     div(class = "ui container", id = "main-container",
         # container header
         h1(class = "ui header", icon("ship"),
-           div(class = "content", "Marine Vessels",
-               div(class = "sub header", "Location and Distance App"))),
+           div(class = "content", "Marine Vessels Application",
+               div(
+                   class = "sub header",
+                   sprintf("version %s", gitVersion())
+               ))),
         # info button and modal
         action_button(
             input_id = "viewInfo",
@@ -49,5 +80,13 @@ ui <- semanticPage(
             ),
             leafletOutput("shipSelectedMap")
         )
+    ),
+    ## footer
+    tags$footer(
+        sprintf(
+            fmt = "Copyright © Dan Negrey %s",
+            format(Sys.Date(), "%Y")
+        ),
+        style = "color: #FFFFFF;padding-top: 20px;padding-left: 12px;padding-bottom: 10px;"
     )
 )
